@@ -1,9 +1,10 @@
 const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
 const randomUrl = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
 const result = document.getElementById("result");
-const randomDrinksSection = document.getElementById("random-drinks");
 const searchBtn = document.getElementById("search-btn");
+const randomDrinksSection = document.getElementById("random-drinks");
 const loadingSpinner = document.getElementById("loading");
+const scrollTopBtn = document.getElementById("scroll-top");
 
 let randomDrinksLoaded = false;
 

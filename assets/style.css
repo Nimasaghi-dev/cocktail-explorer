@@ -126,6 +126,8 @@ button:hover {
     border-radius: 5px;
     cursor: pointer;
     display: none; /* Default hidden */
+    width: 50px;   /* Add fixed width */
+    height: 50px;  /* Add fixed height */
 }
 
 #scroll-top:hover {
@@ -158,6 +160,8 @@ button:hover {
         display: block; /* Ensure it's block to apply the following */
         visibility: hidden;
         pointer-events: none;
+        width: 50px;    /* Keep width and height consistent */
+        height: 50px;
     }
 }
 

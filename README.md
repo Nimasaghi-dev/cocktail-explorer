@@ -17,3 +17,4 @@ A Single page app (ASP) for finding cocktails. It will allow users to search for
 - [] (could have)Show the user random drink at the welcome page
 - [] (should have)Go back to home page button
 - [] (could have)Go back to the top of page button (if the page has scroll bar)
+- [] (could have)Go to top button

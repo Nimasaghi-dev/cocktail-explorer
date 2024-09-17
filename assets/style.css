@@ -15,12 +15,18 @@ body {
 }
 
 h1 {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Playfair Display', serif; /* Unique and luxurious font */
     color: #113946;
+    animation: fadeIn 2s ease-in-out; /* Apply the animation */
 }
 
 .section {
     margin: 20px 0;
+}
+
+input {
+    outline: none;
+    animation: cardFadeIn 1s ease-in-out; /* Apply the animation */
 }
 
 input, button {
@@ -31,8 +37,7 @@ input, button {
     border-radius: 5px;
     background-color: #EAD7BB;
     color: #113946;
-    width: 100%;
-    box-sizing: border-box;
+    animation: cardFadeIn 1s ease-in-out; /* Apply the animation */
 }
 
 button {
@@ -52,6 +57,16 @@ button:hover {
     gap: 20px;
 }
 
+.drink-card p {
+    font-family: 'Georgia', serif; /* Change to a beautiful serif font */
+    font-size: 16px; /* Adjust size */
+    color: #113946; /* Optional: Adjust color */
+    font-weight: bold;
+}
+.drink-card:hover {
+    transform: translateY(10px);
+    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.2);
+}
 .drink-card {
     border: 1px solid #BCA37F;
     padding: 20px;
@@ -66,6 +81,7 @@ button:hover {
     border-radius: 10px;
     color: #113946;
     transition: transform 0.3s ease;
+    animation: cardFadeIn 1s ease-in-out; /* Apply the animation */
 }
 
 .drink-card img {
@@ -115,6 +131,30 @@ button:hover {
     }
 }
 
+/* Keyframes for header animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Keyframes for drink-card animation */
+@keyframes cardFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 /* Go to Top button */
 #scroll-top {
     position: fixed;
@@ -148,11 +188,6 @@ button:hover {
 
     .drink-card {
         width: 100%;
-    }
-
-    input, button {
-        width: 100%;
-        box-sizing: border-box;
     }
 
     /* Ensure the "Go to Top" button is completely hidden and non-interactive */

@@ -1,15 +1,21 @@
 body {
     text-align: center;
-    background-color: #f9f9f9;
+    background-color: #FFF2D8;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    color: #113946;
 }
 
 .container {
     width: 80%;
     margin: auto;
     max-width: 1200px;
+}
+
+h1 {
+    font-family: 'Courier New', Courier, monospace;
+    color: #113946;
 }
 
 .section {
@@ -20,18 +26,20 @@ input, button {
     padding: 10px;
     font-size: 16px;
     margin: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #BCA37F;
     border-radius: 5px;
+    background-color: #EAD7BB;
+    color: #113946;
 }
 
 button {
-    background-color: #333;
-    color: #fff;
+    background-color: #113946;
+    color: #FFF2D8;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #444;
+    background-color: #0E2F3A;
 }
 
 .drink-list {
@@ -42,9 +50,9 @@ button:hover {
 }
 
 .drink-card {
-    border: 1px solid #ccc;
+    border: 1px solid #BCA37F;
     padding: 20px;
-    background: #fff;
+    background: #EAD7BB;
     width: 300px;
     box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -53,6 +61,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     border-radius: 10px;
+    color: #113946;
 }
 
 .drink-card img {
@@ -70,8 +79,8 @@ button:hover {
 
 .drink-card .show-more {
     margin-top: auto;
-    background-color: #28a745;
-    color: #fff;
+    background-color: #BCA37F;
+    color: #FFF2D8;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -79,14 +88,14 @@ button:hover {
 }
 
 .drink-card .show-more:hover {
-    background-color: #218838;
+    background-color: #8C7A5A;
 } 
 
 .spinner {
     width: 50px;
     height: 50px;
-    border: 5px solid #ccc;
-    border-top-color: #000;
+    border: 5px solid #BCA37F;
+    border-top-color: #113946;
     border-radius: 50%;
     animation: spin 1s infinite linear;
     margin: 20px auto;
@@ -106,14 +115,59 @@ button:hover {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: #000;
-    color: #fff;
+    background-color: #113946;
+    color: #FFF2D8;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    display: none;
+    display: none; /* Default to hidden */
 }
 
 #scroll-top:hover {
-    background-color: #333;
+    background-color: #0E2F3A;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+    .container {
+        width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    .drink-card {
+        width: 100%;
+    }
+
+    input, button {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    #scroll-top {
+        display: none; /* Hide button on screens less than 768px */
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    .drink-card {
+        padding: 10px;
+    }
+
+    input, button {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .drink-card .show-more {
+        padding: 8px 16px;
+    }
 }

@@ -56,3 +56,27 @@ async function fetchDrink(apiUrl) {
     return [];
   }
 }
+
+function displayDrink(drink, container) {
+    const drinkCard = document.createElement("div"); 
+    drinkCard.className = "drink-card";
+
+    let ingredients = [];
+    for (let i = 1; i <= 15; i++){
+        const ingredient = drink[`strIngredient${i}`];
+        const measure = drink[`strMeasure${i}`];
+        if (ingredient) {
+            ingredients.push(`${measure ? measure : ''} ${ingredient}`);
+        }
+    }
+
+    drinkCard.innerHTML = `
+    <img src="${drink.strDrinkThumb}" alt="${drink.strDrink}">
+    <h2>${drink.strDrink}</h2>
+    <p>${drink.strCategory}</p>
+    <ul>${ingredients.map(ing => `<li>${ing}</li>`).join('')}</ul>
+    <button class= "show-more">Show more</button>
+    <div class= "instructions hidden"><pre>${drink.strInstructions}</pre></div>
+    `;
+    container.appendChild(drinkCard);
+}

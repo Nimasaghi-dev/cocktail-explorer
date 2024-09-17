@@ -3,6 +3,7 @@ const randomUrl = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
 const result = document.getElementById("result");
 const randomDrinksSection = document.getElementById("random-drinks");
 const searchBtn = document.getElementById("search-btn");
+const loadingSpinner = document.getElementById("loading");
 
 let randomDrinksLoaded = false;
 
@@ -79,4 +80,18 @@ function displayDrink(drink, container) {
     <div class= "instructions hidden"><pre>${drink.strInstructions}</pre></div>
     `;
     container.appendChild(drinkCard);
+
+    const showMoreBtn = drinkCard.querySelector(".show-more");
+    const instructionsDiv = drinkCard.querySelector(".instructions");
+
+    showMoreBtn.addEventListener("click", () => {
+        if (instructionsDiv.classList.contains("hidden")) {
+            instructionsDiv.classList.remove("hidden");
+            showMoreBtn.textContent = "Show less";
+        } else {
+            instructionsDiv.classList.add("hidden");
+            showMoreBtn.textContent = "Show more";
+        }
+    });
 }
+

@@ -5,6 +5,7 @@ body {
     margin: 0;
     padding: 0;
     color: #113946;
+    line-height: 1.6;
 }
 
 .container {
@@ -30,6 +31,8 @@ input, button {
     border-radius: 5px;
     background-color: #EAD7BB;
     color: #113946;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 button {
@@ -62,6 +65,7 @@ button:hover {
     flex-direction: column;
     border-radius: 10px;
     color: #113946;
+    transition: transform 0.3s ease;
 }
 
 .drink-card img {
@@ -89,7 +93,7 @@ button:hover {
 
 .drink-card .show-more:hover {
     background-color: #8C7A5A;
-} 
+}
 
 .spinner {
     width: 50px;
@@ -111,6 +115,7 @@ button:hover {
     }
 }
 
+/* Go to Top button */
 #scroll-top {
     position: fixed;
     bottom: 20px;
@@ -120,7 +125,7 @@ button:hover {
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    display: none; /* Default to hidden */
+    display: none; /* Default hidden */
 }
 
 #scroll-top:hover {
@@ -148,8 +153,11 @@ button:hover {
         box-sizing: border-box;
     }
 
+    /* Ensure the "Go to Top" button is completely hidden and non-interactive */
     #scroll-top {
-        display: none; /* Hide button on screens less than 768px */
+        display: block; /* Ensure it's block to apply the following */
+        visibility: hidden;
+        pointer-events: none;
     }
 }
 
@@ -169,5 +177,9 @@ button:hover {
 
     .drink-card .show-more {
         padding: 8px 16px;
+    }
+
+    .drink-card {
+        width: 100%;
     }
 }

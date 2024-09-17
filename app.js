@@ -3,8 +3,8 @@ const randomUrl = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
 const result = document.getElementById("result");
 const searchBtn = document.getElementById("search-btn");
 const randomDrinksSection = document.getElementById("random-drinks");
-const loadingSpinner = document.getElementById("loading");
 const scrollTopBtn = document.getElementById("scroll-top");
+const loadingSpinner = document.getElementById("loading");
 
 let randomDrinksLoaded = false;
 
@@ -26,27 +26,28 @@ async function showRandomDrinks(count) {
 }
 
 searchBtn.addEventListener("click", async () => {
-  const userInput = document.getElementById("search-input").Value.trim();
-
-  if (userInput.length === 0) {
-    result.innerHTML = "<h3>Please enter a drink name</h3>";
-  } else {
-    randomDrinksSection.innerHTML = "";
-
-    result.innerHTML = "";
-    showLoadingSpinner(true);
-    setTimeout(async () => {
-      const searchResults = await fetchDrink(url + userInput);
-      showLoadingSpinner(false);
-
-      if (!searchResults || searchResults.length === 0) {
-        result.innerHTML = "<h3>No drinks found</h3>";
-      } else {
-        searchResults.forEach((drink) => displayDrink(drink, result));
-      }
-    }, 2000);
-  }
-});
+    const userInput = document.getElementById("search-input").value.trim();
+  
+    if (userInput.length === 0) {
+      result.innerHTML = "<h3>Please enter a drink name</h3>";
+    } else {
+      randomDrinksSection.innerHTML = "";
+  
+      result.innerHTML = "";
+      showLoadingSpinner(true);
+      setTimeout(async () => {
+        const searchResults = await fetchDrink(url + userInput);
+        showLoadingSpinner(false);
+  
+        if (!searchResults || searchResults.length === 0) {
+          result.innerHTML = "<h3>No drinks found</h3>";
+        } else {
+          searchResults.forEach(drink => displayDrink(drink, result));
+        }
+      }, 2000);
+    }
+  });
+  
 
 async function fetchDrink(apiUrl) {
   try {
@@ -54,7 +55,7 @@ async function fetchDrink(apiUrl) {
     const data = await response.json();
     return data.drinks;
   } catch (error) {
-    console.error("Error fetching data: ", error);
+    console.error("Error fetching drink: ", error);
     return [];
   }
 }
@@ -65,7 +66,7 @@ function displayDrink(drink, container) {
 
     let ingredients = [];
     for (let i = 1; i <= 15; i++){
-        const ingredient = drink[`strIngredient${i}`];
+        const ingredient = drink[`strIngredients${i}`];
         const measure = drink[`strMeasure${i}`];
         if (ingredient) {
             ingredients.push(`${measure ? measure : ''} ${ingredient}`);
@@ -75,11 +76,12 @@ function displayDrink(drink, container) {
     drinkCard.innerHTML = `
     <img src="${drink.strDrinkThumb}" alt="${drink.strDrink}">
     <h2>${drink.strDrink}</h2>
-    <p>${drink.strCategory}</p>
+    <p>${drink.strGlass}</p>
     <ul>${ingredients.map(ing => `<li>${ing}</li>`).join('')}</ul>
-    <button class= "show-more">Show more</button>
+    <button class= "show-more">Show More</button>
     <div class= "instructions hidden"><pre>${drink.strInstructions}</pre></div>
     `;
+
     container.appendChild(drinkCard);
 
     const showMoreBtn = drinkCard.querySelector(".show-more");
@@ -113,5 +115,7 @@ window.addEventListener('scroll', () => {
 });
 
 scrollTopBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ 
+        top: 0, behavior: 'smooth' 
+    });
 });

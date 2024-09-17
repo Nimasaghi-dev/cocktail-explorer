@@ -2,12 +2,18 @@ body {
     text-align: center;
     background-color: #f9f9f9;
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
     width: 80%;
     margin: auto;
     max-width: 1200px;
+}
+
+.section {
+    margin: 20px 0;
 }
 
 input, button {
@@ -26,4 +32,88 @@ button {
 
 button:hover {
     background-color: #444;
+}
+
+.drink-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.drink-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    background: #fff;
+    width: 300px;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+.drink-card img {
+    max-width: 100%;
+    border-radius: 10px;
+    height: auto;
+}
+
+.drink-card .instructions {
+    max-height: 100px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.drink-card .show-more {
+    margin-top: auto;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.drink-card .show-more:hover {
+    background-color: #218838;
+} 
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #ccc;
+    border-top-color: #000;
+    border-radius: 50%;
+    animation: spin 1s infinite linear;
+    margin: 20px auto;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#scroll-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: none;
+}
+
+#scroll-top:hover {
+    background-color: #333;
 }

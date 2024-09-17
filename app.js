@@ -95,3 +95,11 @@ function displayDrink(drink, container) {
     });
 }
 
+function showLoadingSpinner(show) {
+    if (show) {
+        loadingSpinner.classList.remove("hidden");
+    } else {
+        loadingSpinner.classList.add("hidden");
+    }
+}
+

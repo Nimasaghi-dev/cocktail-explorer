@@ -1,0 +1,12 @@
+{
+  "name": "cocktail-explorer",
+  "version": "1.0.0",
+  "description": "A Single page app (ASP) for finding cocktails. It will allow users to search for cocktails by name, ingredient etc. This app lets users see the image of the drinks, ingredients in the cocktails and instructions how to make it.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

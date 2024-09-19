@@ -12,6 +12,8 @@ export async function showRandomDrinks(count) {
     }
 }
 
+
+//! This block try/catch is used for error handling. It ensures that even if an error occurs during the API call or JSON parsing, the function doesn't crash.
 export async function fetchDrink(apiUrl) {
     try {
         const response = await fetch(apiUrl);

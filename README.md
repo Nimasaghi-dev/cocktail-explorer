@@ -1,6 +1,6 @@
 # Cocktail Explorer
 
-A Single page app (ASP) for finding cocktails. It will allow users to search for cocktails by name, ingredient etc. This app lets users see the image of the drinks, ingredients in the cocktails and instructions how to make it.
+Cocktail Explorer is a web application that allows users to explore a wide range of cocktail recipes. By integrating with the CocktailDB API, the app enables users to search for cocktails by name and discover random cocktail recipes. Each recipe displays detailed information, including the drink’s name, ingredients, glass type, and instructions.
 
 ## API to use
 

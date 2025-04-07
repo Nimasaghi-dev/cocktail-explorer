@@ -32,7 +32,7 @@ A modern React TypeScript application for exploring and discovering cocktail rec
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/cocktail-explorer.git
+   git clone https://github.com/nimasaghi-dev/cocktail-explorer.git
    cd cocktail-explorer
    ```
 
@@ -94,12 +94,6 @@ cocktail-explorer/
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## License
-
-This project is licensed under the ISC License.
-
 ## Acknowledgments
 
 - [TheCocktailDB](https://www.thecocktaildb.com/) for providing the cocktail data API
-- All contributors who have helped shape this project
-

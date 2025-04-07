@@ -1,9 +1,9 @@
 .drink-card {
   background: var(--white);
-  border-radius: 1rem;
-  box-shadow: var(--shadow-md);
+  border-radius: 8px;
   overflow: hidden;
-  transition: transform 0.2s ease-in-out;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -11,30 +11,52 @@
 
 .drink-card:hover {
   transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
 }
 
-.drink-card img {
+.drink-image-container {
+  position: relative;
   width: 100%;
-  height: 200px;
-  object-fit: cover;
+  padding-top: 100%; /* Creates a 1:1 aspect ratio */
+  overflow: hidden;
+}
+
+.drink-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This ensures the image covers the container without distortion */
+  transition: transform 0.3s ease;
+}
+
+.drink-card:hover .drink-image {
+  transform: scale(1.05);
+}
+
+.drink-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1rem;
 }
 
 .drink-card h2 {
   color: var(--text-primary);
   font-size: 1.5rem;
-  margin: 1rem;
-  margin-bottom: 0.5rem;
+  margin: 0 0 0.5rem 0;
 }
 
 .glass-type {
   color: var(--text-secondary);
-  margin: 0 1rem;
+  margin: 0 0 1rem 0;
   font-size: 0.9rem;
 }
 
 .ingredients {
-  margin: 1rem;
-  flex-grow: 1;
+  margin-bottom: 1rem;
+  flex: 1;
 }
 
 .ingredients h3 {
@@ -60,10 +82,10 @@
   color: var(--white);
   border: none;
   padding: 0.5rem 1rem;
-  margin: 1rem;
-  border-radius: 0.5rem;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s ease;
+  margin-top: auto;
   align-self: flex-start;
 }
 
@@ -72,10 +94,10 @@
 }
 
 .instructions {
-  margin: 1rem;
+  margin-top: 1rem;
   padding: 1rem;
   background: var(--background);
-  border-radius: 0.5rem;
+  border-radius: 4px;
 }
 
 .instructions h3 {
@@ -84,9 +106,7 @@
   margin-bottom: 0.5rem;
 }
 
-.instructions pre {
-  white-space: pre-wrap;
-  font-family: inherit;
+.instructions p {
   color: var(--text-secondary);
   font-size: 0.9rem;
   line-height: 1.5;

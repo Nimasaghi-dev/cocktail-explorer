@@ -43,9 +43,9 @@ const DrinkCard: React.FC<DrinkCardProps> = ({ drink }) => {
         </div>
 
         <button 
+          type="button"
           className="show-more" 
           onClick={toggleInstructions}
-          aria-expanded={showInstructions ? "true" : "false"}
         >
           {showInstructions ? 'Hide Instructions' : 'Show Instructions'}
         </button>

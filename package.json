@@ -4,9 +4,28 @@
   "description": "A Single page app (ASP) for finding cocktails. It will allow users to search for cocktails by name, ingredient etc. This app lets users see the image of the drinks, ingredients in the cocktails and instructions how to make it.",
   "main": "index.js",
   "scripts": {
+    "start": "vite",
+    "build": "tsc && vite build",
+    "serve": "vite preview",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "cocktails",
+    "react",
+    "typescript",
+    "vite"
+  ],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react": "^4.2.0",
+    "typescript": "^5.0.2",
+    "vite": "^5.0.0"
+  }
 }

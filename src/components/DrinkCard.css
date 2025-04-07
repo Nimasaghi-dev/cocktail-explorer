@@ -1,0 +1,94 @@
+.drink-card {
+  background: var(--white);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.drink-card:hover {
+  transform: translateY(-4px);
+}
+
+.drink-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.drink-card h2 {
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  margin: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.glass-type {
+  color: var(--text-secondary);
+  margin: 0 1rem;
+  font-size: 0.9rem;
+}
+
+.ingredients {
+  margin: 1rem;
+  flex-grow: 1;
+}
+
+.ingredients h3 {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.ingredients ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ingredients li {
+  color: var(--text-secondary);
+  padding: 0.25rem 0;
+  font-size: 0.9rem;
+}
+
+.show-more {
+  background: var(--primary-color);
+  color: var(--white);
+  border: none;
+  padding: 0.5rem 1rem;
+  margin: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  align-self: flex-start;
+}
+
+.show-more:hover {
+  background: var(--primary-hover);
+}
+
+.instructions {
+  margin: 1rem;
+  padding: 1rem;
+  background: var(--background);
+  border-radius: 0.5rem;
+}
+
+.instructions h3 {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.instructions pre {
+  white-space: pre-wrap;
+  font-family: inherit;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+} 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Cocktail } from './types';
-import { fetchDrink, fetchRandomDrink, fetchMultipleRandomDrinks, searchDrinks } from './services/api';
+import { fetchMultipleRandomDrinks, searchDrinks } from './services/api';
 import DrinkCard from './components/DrinkCard';
 import SearchBar from './components/SearchBar';
 import LoadingSpinner from './components/LoadingSpinner';
@@ -110,6 +110,7 @@ const App: React.FC = () => {
             <InfiniteScroll
               onLoadMore={loadMoreRandomDrinks}
               hasMore={hasMore}
+              isLoading={isLoading}
             >
               <div className="drinks-grid">
                 {randomDrinks.map(drink => (

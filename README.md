@@ -4,6 +4,13 @@ A modern React TypeScript application for exploring and discovering cocktail rec
 
 **Live demo:** https://cocktail-explorer-nima.netlify.app
 
+![Cocktail Explorer home page with a featured random cocktail](docs/screenshot-desktop.jpg)
+
+<p>
+  <img src="docs/screenshot-cards.jpg" alt="Random cocktails grid with recipe cards" width="68%">
+  <img src="docs/screenshot-mobile.jpg" alt="Cocktail Explorer on a phone" width="28%">
+</p>
+
 ## Features
 
 - 🔍 Search for cocktails by name

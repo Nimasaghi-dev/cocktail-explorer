@@ -84,6 +84,7 @@
 }
 
 .drink-card__ingredient {
+  min-width: 0;
   color: var(--ink);
 }
 
@@ -93,7 +94,9 @@
   border-bottom: 1px dotted var(--gold);
 }
 
+/* Keep short measures like "2 oz" on one line; the name wraps instead */
 .drink-card__measure {
+  flex-shrink: 0;
   max-width: 55%;
   text-align: right;
   color: var(--muted);

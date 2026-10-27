@@ -112,6 +112,11 @@
   stroke-linejoin: round;
 }
 
+/* Phone-only copy of the arrows, laid over the photo */
+.hero__arrows--on-photo {
+  display: none;
+}
+
 .hero__cards {
   display: flex;
   gap: 0.75rem;
@@ -423,6 +428,32 @@
 
   .hero__switcher {
     margin-top: 2.25rem;
+  }
+
+  .hero__switcher-head .hero__arrows {
+    display: none;
+  }
+
+  .hero__arrows--on-photo {
+    position: absolute;
+    inset: 0 0 8%;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0.75rem;
+    pointer-events: none;
+  }
+
+  .hero__arrows--on-photo .hero__arrow {
+    width: 42px;
+    height: 42px;
+    pointer-events: auto;
+    background: rgba(255, 255, 255, 0.88);
+    border-color: var(--gold);
+    box-shadow: 0 6px 16px -8px rgba(42, 23, 17, 0.5);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
   }
 
   .hero__cards {

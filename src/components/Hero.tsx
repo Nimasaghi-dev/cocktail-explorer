@@ -107,6 +107,27 @@ const Hero: React.FC<HeroProps> = ({ drinks, onSeeRecipe, onScrollDown }) => {
     ? [drink.strCategory, drink.strGlass].filter(Boolean).join(' · ')
     : 'Recipes for every glass';
 
+  const renderArrows = (className: string) => (
+    <div className={className}>
+      <button
+        type="button"
+        className="hero__arrow"
+        onClick={() => select(activeIndex - 1)}
+        aria-label="Previous drink"
+      >
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 L5 8 L10 13" /></svg>
+      </button>
+      <button
+        type="button"
+        className="hero__arrow"
+        onClick={() => select(activeIndex + 1)}
+        aria-label="Next drink"
+      >
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3 L11 8 L6 13" /></svg>
+      </button>
+    </div>
+  );
+
   return (
     <section className="hero" ref={heroRef} aria-label="Featured cocktail">
       <div className="hero__garnishes hero__garnishes--back" ref={backRef} aria-hidden="true">
@@ -134,24 +155,7 @@ const Hero: React.FC<HeroProps> = ({ drinks, onSeeRecipe, onScrollDown }) => {
           <div className="hero__switcher">
             <div className="hero__switcher-head">
               <p className="hero__switcher-label" id="switcher-label">More pours</p>
-              <div className="hero__arrows">
-                <button
-                  type="button"
-                  className="hero__arrow"
-                  onClick={() => select(activeIndex - 1)}
-                  aria-label="Previous drink"
-                >
-                  <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 L5 8 L10 13" /></svg>
-                </button>
-                <button
-                  type="button"
-                  className="hero__arrow"
-                  onClick={() => select(activeIndex + 1)}
-                  aria-label="Next drink"
-                >
-                  <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3 L11 8 L6 13" /></svg>
-                </button>
-              </div>
+              {renderArrows('hero__arrows')}
             </div>
             <ul className="hero__cards" aria-labelledby="switcher-label">
               {pool.map((d, i) => (
@@ -193,6 +197,8 @@ const Hero: React.FC<HeroProps> = ({ drinks, onSeeRecipe, onScrollDown }) => {
         <div className="hero__garnishes hero__garnishes--front" ref={frontRef} aria-hidden="true">
           {renderGarnishes(FRONT_GARNISHES)}
         </div>
+        {/* On phones the arrows sit on the photo, so you see it change as you tap */}
+        {pool.length > 1 && renderArrows('hero__arrows hero__arrows--on-photo')}
       </div>
 
       <button type="button" className="hero__scroll" onClick={onScrollDown} aria-label="Scroll to cocktails">

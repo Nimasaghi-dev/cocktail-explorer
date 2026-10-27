@@ -4,6 +4,9 @@
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
   min-height: min(88vh, 820px);
   overflow: hidden;
+  /* iOS Safari ignores overflow: hidden for the 3D stage, which then widens
+     the page; clip-path clips it in every browser */
+  clip-path: inset(0);
   --gscale: 1;
 }
 
@@ -424,6 +427,11 @@
 
   .hero__copy {
     padding: 2.25rem var(--gutter) 4.5rem;
+  }
+
+  /* Arrows sit on the photo here, so a one-line name can't shift them */
+  .hero__title {
+    min-height: 0;
   }
 
   .hero__switcher {

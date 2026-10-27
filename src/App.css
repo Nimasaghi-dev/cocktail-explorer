@@ -2,6 +2,8 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  /* Never scroll sideways; clip (unlike hidden) keeps the sticky header working */
+  overflow-x: clip;
 }
 
 /* Header */

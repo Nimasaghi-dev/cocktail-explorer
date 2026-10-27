@@ -10,6 +10,7 @@ import Logo from './components/Logo';
 import Hero from './components/Hero';
 import ClassicsMarquee from './components/ClassicsMarquee';
 import Footer from './components/Footer';
+import DrunkTitle from './components/DrunkTitle';
 import './App.css';
 
 const App: React.FC = () => {
@@ -173,10 +174,7 @@ const App: React.FC = () => {
           </section>
         ) : (
           <section className="drinks-section" ref={drinksRef} aria-labelledby="random-title">
-            <h2 className="double-title" id="random-title">
-              <span className="double-title__bold">Random</span>
-              <span className="double-title__thin">cocktails</span>
-            </h2>
+            <DrunkTitle id="random-title" bold="Random" thin="cocktails" />
 
             {isLoading && !randomDrinks.length && <LoadingSpinner />}
 

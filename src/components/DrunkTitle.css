@@ -1,0 +1,156 @@
+/* Wobble strength; registered so hovering eases it up instead of jumping */
+@property --amp {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 1;
+}
+
+.drunk-title {
+  --amp: 1;
+  transition: --amp 0.9s ease;
+}
+
+.drunk-title:hover {
+  --amp: 1.9;
+}
+
+/* Each word leans and sways as a whole */
+.drunk-word {
+  position: relative;
+  display: inline-block;
+  transform-origin: 50% 100%;
+}
+
+.drunk-title.is-seen .drunk-word {
+  animation: drunk-lean 4.8s ease-in-out var(--word-delay, 0s) infinite alternate;
+}
+
+.drunk-word__main,
+.drunk-word__ghost {
+  display: inline-block;
+  perspective: 500px;
+}
+
+.drunk-word__main {
+  position: relative;
+}
+
+/* Double vision: a blurry copy drifts apart and back together */
+.drunk-word__ghost {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  filter: blur(0.8px);
+  pointer-events: none;
+}
+
+.drunk-title.is-seen .drunk-word__ghost {
+  animation: drunk-double 6.5s ease-in-out calc(var(--word-delay, 0s) + 1.2s) infinite;
+}
+
+/* Letters rock on their feet, each out of step */
+.drunk-letter {
+  display: inline-block;
+  transform-origin: 50% 85%;
+}
+
+.drunk-title.is-seen .drunk-letter {
+  animation: drunk-sway var(--dur, 2.8s) ease-in-out calc(var(--i, 0) * -0.27s) infinite alternate;
+}
+
+.drunk-letter__in {
+  display: inline-block;
+}
+
+.drunk-title:not(.is-seen) .drunk-letter__in {
+  opacity: 0;
+}
+
+.drunk-title.is-seen .drunk-word__main .drunk-letter__in {
+  animation: drunk-stumble 0.9s cubic-bezier(0.3, 1.6, 0.5, 1) calc(var(--i, 0) * 70ms) both;
+}
+
+.drunk-title:not(.is-onscreen) *,
+.drunk-title:not(.is-onscreen) {
+  animation-play-state: paused !important;
+}
+
+@keyframes drunk-sway {
+  from {
+    transform:
+      translateY(calc(var(--bob) * var(--amp) * -1))
+      rotateZ(calc(var(--tilt) * var(--amp) * -1))
+      rotateY(calc(var(--yaw) * var(--amp) * -1))
+      rotateX(calc(var(--pitch) * var(--amp) * -1));
+  }
+  to {
+    transform:
+      translateY(calc(var(--bob) * var(--amp)))
+      rotateZ(calc(var(--tilt) * var(--amp)))
+      rotateY(calc(var(--yaw) * var(--amp)))
+      rotateX(calc(var(--pitch) * var(--amp)));
+  }
+}
+
+@keyframes drunk-lean {
+  from {
+    transform:
+      rotate(calc(-1.2deg * var(--amp)))
+      skewX(calc(3deg * var(--amp)))
+      translateX(calc(-0.015em * var(--amp)));
+  }
+  to {
+    transform:
+      rotate(calc(1.2deg * var(--amp)))
+      skewX(calc(-3deg * var(--amp)))
+      translateX(calc(0.015em * var(--amp)));
+  }
+}
+
+@keyframes drunk-double {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  35% {
+    opacity: 0.45;
+    transform: translate(calc(0.06em * var(--amp)), calc(-0.015em * var(--amp)));
+  }
+  55% {
+    opacity: 0.4;
+    transform: translate(calc(-0.045em * var(--amp)), calc(0.02em * var(--amp)));
+  }
+  75% {
+    opacity: 0.15;
+    transform: translate(0.01em, 0);
+  }
+}
+
+@keyframes drunk-stumble {
+  0% {
+    opacity: 0;
+    transform: translateY(-0.5em) rotateX(80deg) rotateZ(-12deg);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(0.06em) rotateX(-12deg) rotateZ(5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drunk-title .drunk-word,
+  .drunk-title .drunk-word__ghost,
+  .drunk-title .drunk-letter,
+  .drunk-title .drunk-letter__in {
+    animation: none !important;
+  }
+
+  .drunk-title .drunk-letter__in {
+    opacity: 1 !important;
+  }
+}

@@ -9,8 +9,6 @@ const Footer: React.FC = () => {
         <Logo size="lg" />
 
         <p className="footer-attent">Please drink responsibly</p>
-
-        <p className="footer-copy">Cocktail data and images from TheCocktailDB</p>
       </div>
     </footer>
   );

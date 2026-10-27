@@ -113,12 +113,9 @@ const App: React.FC = () => {
     scrollToTop();
   };
 
-  const featured = randomDrinks[0];
-
-  const showFeaturedRecipe = () => {
-    if (!featured) return;
+  const showRecipe = (drink: Cocktail) => {
     document
-      .getElementById(`drink-${featured.idDrink}`)
+      .getElementById(`drink-${drink.idDrink}`)
       ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
@@ -139,8 +136,8 @@ const App: React.FC = () => {
       </header>
 
       <Hero
-        drink={isSearching ? undefined : featured}
-        onSeeRecipe={showFeaturedRecipe}
+        drinks={isSearching ? [] : randomDrinks}
+        onSeeRecipe={showRecipe}
         onScrollDown={scrollToDrinks}
       />
 

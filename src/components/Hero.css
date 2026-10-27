@@ -2,20 +2,25 @@
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
-  min-height: min(78vh, 720px);
+  min-height: min(88vh, 820px);
   overflow: hidden;
+  --gscale: 1;
 }
 
 .hero__copy {
   position: relative;
   z-index: 2;
   align-self: center;
-  padding: 4rem var(--gutter) 5.5rem;
+  padding: 3.5rem var(--gutter) 5rem;
   padding-left: max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter)));
 }
 
 .hero__copy .eyebrow {
   margin-bottom: 1.4rem;
+}
+
+.hero__swap {
+  animation: hero-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
 .hero__title {
@@ -27,7 +32,10 @@
   text-transform: uppercase;
   color: var(--brown-700);
   overflow-wrap: anywhere;
-  animation: hero-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  /* Reserve two lines so switching drinks doesn't shift the switcher */
+  min-height: 2.04em;
+  display: flex;
+  align-items: flex-end;
 }
 
 .hero__meta {
@@ -41,7 +49,7 @@
 
 .hero__tagline {
   max-width: 20ch;
-  margin: 1.75rem 0 2.25rem;
+  margin: 1.5rem 0 2rem;
   font-family: var(--font-display);
   font-weight: 200;
   font-size: clamp(1.25rem, 2.3vw, 1.85rem);
@@ -49,35 +57,188 @@
   color: var(--brown-700);
 }
 
+/* Drink switcher */
+
+.hero__switcher {
+  margin-top: 2.75rem;
+  max-width: 30rem;
+}
+
+.hero__switcher-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3.25rem;
+}
+
+.hero__switcher-label {
+  font-weight: 600;
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hero__arrows {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.hero__arrow {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--gold-light);
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--brown-600);
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.hero__arrow:hover {
+  border-color: var(--gold-deep);
+  background: var(--gold-pale);
+}
+
+.hero__arrow svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hero__cards {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.hero__cards li {
+  flex: 0 1 104px;
+  min-width: 0;
+}
+
+.pour-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 2.6rem 0.6rem 0.8rem;
+  background: var(--paper);
+  border: 1px solid var(--gold-light);
+  text-align: center;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pour-card img {
+  width: 68px;
+  height: 68px;
+  margin-top: -4.6rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--paper);
+  box-shadow: 0 0 0 1px var(--gold), 0 12px 24px -10px rgba(42, 23, 17, 0.45);
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  pointer-events: none;
+}
+
+.pour-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 14px 30px -24px rgba(42, 23, 17, 0.5);
+}
+
+.pour-card:hover img {
+  transform: translateY(-8px) rotate(-8deg) scale(1.08);
+}
+
+.pour-card.is-active {
+  border-color: var(--brown-600);
+}
+
+.pour-card.is-active img {
+  box-shadow: 0 0 0 1.5px var(--brown-600), 0 12px 24px -10px rgba(42, 23, 17, 0.45);
+}
+
+.pour-card__name {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.6em;
+  font-weight: 600;
+  font-size: 0.62rem;
+  line-height: 1.3;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--brown-700);
+  overflow-wrap: anywhere;
+}
+
+/* Media: a tilting 3D stage, slightly oversized so its edges never show */
+
 .hero__media {
   position: relative;
+  perspective: 1400px;
 }
 
-/* Pale gold slab behind the photo, offset along the same diagonal */
-.hero__media::before {
-  content: '';
+.hero__stage {
   position: absolute;
-  inset: 0;
-  background: var(--gold-pale);
-  clip-path: polygon(24% 0, 100% 0, 100% 100%, 2% 100%);
+  inset: -3%;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
-.hero__image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  clip-path: polygon(34% 0, 100% 0, 100% 100%, 12% 100%);
-  animation: hero-reveal 1.2s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-}
-
+.hero__slab,
+.hero__image,
+.hero__fizz,
+.hero__glare,
 .hero__rule {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+}
+
+.hero__slab {
+  background: var(--slab, var(--gold-pale));
+  clip-path: polygon(24% 0, 100% 0, 100% 100%, 2% 100%);
+  transform: translateZ(-40px);
+  filter: blur(var(--spin-blur, 0px));
+  transition: background-color 0.9s ease;
+}
+
+.hero__image {
+  object-fit: cover;
+  clip-path: polygon(34% 0, 100% 0, 100% 100%, 12% 100%);
+  filter: blur(var(--spin-blur, 0px));
+  animation: hero-reveal 1.2s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.hero__fizz,
+.hero__glare {
+  clip-path: polygon(34% 0, 100% 0, 100% 100%, 12% 100%);
   pointer-events: none;
+}
+
+.hero__fizz {
+  overflow: hidden;
+  transform: translateZ(20px);
+}
+
+.hero__glare {
+  background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 244, 214, 0.55), transparent 42%);
+  mix-blend-mode: soft-light;
+  opacity: var(--glare, 0);
+}
+
+.hero__rule {
+  pointer-events: none;
+  transform: translateZ(10px);
 }
 
 .hero__rule line {
@@ -85,11 +246,84 @@
   stroke-width: 1.5;
 }
 
+.fizz-bubble {
+  position: absolute;
+  bottom: -16px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 250, 235, 0.85);
+  background: radial-gradient(circle at 32% 30%, rgba(255, 255, 255, 0.9) 0 16%, rgba(255, 255, 255, 0.08) 42%, transparent 70%);
+  box-shadow: 0 0 6px rgba(255, 240, 210, 0.35);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* Garnishes: line art in two depth layers; JS owns each .garnish transform */
+
+.hero__garnishes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.hero__garnishes--back {
+  z-index: 1;
+  --garnish-fill: none;
+  --garnish-stroke: var(--gold);
+}
+
+.hero__garnishes--back .garnish__art {
+  opacity: 0.6;
+}
+
+.hero__garnishes--front {
+  z-index: 3;
+  --garnish-fill: #fffdf6;
+  --garnish-stroke: var(--gold-deep);
+}
+
+.garnish {
+  position: absolute;
+  width: calc(var(--s) * var(--gscale) * 1px);
+  height: calc(var(--s) * var(--gscale) * 1px);
+  margin: calc(var(--s) * var(--gscale) * -0.5px) 0 0 calc(var(--s) * var(--gscale) * -0.5px);
+  will-change: transform;
+}
+
+.garnish__art {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  animation: garnish-in 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) var(--d, 0.5s) both;
+}
+
+.hero__garnishes--front .garnish__art {
+  filter: drop-shadow(0 8px 14px rgba(42, 23, 17, 0.28));
+}
+
+.garnish__art .g-fill,
+.garnish__art .g-line {
+  stroke: var(--garnish-stroke);
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.garnish__art .g-fill {
+  fill: var(--garnish-fill);
+}
+
+.garnish__art .g-line {
+  fill: none;
+}
+
 .hero__scroll {
   position: absolute;
-  z-index: 3;
+  z-index: 4;
   left: 50%;
-  bottom: 1.5rem;
+  bottom: 1.25rem;
   width: 44px;
   height: 32px;
   display: flex;
@@ -121,6 +355,28 @@
   }
 }
 
+@keyframes garnish-in {
+  from {
+    opacity: 0;
+    transform: scale(0.2) rotate(-40deg);
+  }
+}
+
+@keyframes fizz-rise {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.6);
+  }
+  12%,
+  85% {
+    opacity: var(--o, 0.5);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--drift, 0px), calc(var(--fizz-h, 600px) * -1 - 30px)) scale(1);
+  }
+}
+
 @keyframes hero-bob {
   0%, 100% {
     transform: translate(-50%, 0);
@@ -134,6 +390,7 @@
   .hero {
     grid-template-columns: 1fr;
     min-height: 0;
+    --gscale: 0.6;
   }
 
   .hero__media {
@@ -141,19 +398,48 @@
     height: clamp(240px, 62vw, 460px);
   }
 
-  .hero__media::before {
+  .hero__stage {
+    inset: -4%;
+  }
+
+  .hero__slab {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 94%);
   }
 
-  .hero__image {
+  .hero__image,
+  .hero__fizz,
+  .hero__glare {
     clip-path: polygon(0 0, 100% 0, 100% 86%, 0 100%);
   }
 
-  .hero__rule {
+  .hero__rule,
+  .hero__garnishes--back {
     display: none;
   }
 
   .hero__copy {
     padding: 2.25rem var(--gutter) 4.5rem;
+  }
+
+  .hero__switcher {
+    margin-top: 2.25rem;
+  }
+
+  .hero__cards {
+    gap: 0.5rem;
+  }
+
+  .hero__cards li {
+    flex: 1 1 0;
+  }
+
+  .pour-card {
+    padding: 2.2rem 0.4rem 0.7rem;
+  }
+
+  .pour-card img {
+    width: 56px;
+    height: 56px;
+    margin-top: -3.9rem;
   }
 }

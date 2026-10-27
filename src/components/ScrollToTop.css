@@ -1,37 +1,45 @@
 .scroll-to-top {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  background: var(--primary-color);
-  color: var(--white);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 50;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
-  box-shadow: var(--shadow-md);
-  transition: all 0.2s ease-in-out;
-  opacity: 0.8;
-  z-index: 10;
+  border-radius: 10px;
+  background: var(--paper);
+  border: 1px solid var(--gold-light);
+  color: var(--gold-deep);
+  box-shadow: 0 8px 22px -10px rgba(42, 23, 17, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: scroll-top-in 0.3s ease both;
 }
 
 .scroll-to-top:hover {
-  background: var(--primary-hover);
-  opacity: 1;
   transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 12px 26px -10px rgba(42, 23, 17, 0.45);
+}
+
+.scroll-to-top svg {
+  width: 16px;
+  height: 9px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+}
+
+@keyframes scroll-top-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
 }
 
 @media (max-width: 768px) {
   .scroll-to-top {
-    bottom: 1rem;
     right: 1rem;
-    width: 35px;
-    height: 35px;
-    font-size: 1.25rem;
+    bottom: 1rem;
   }
-} 
+}

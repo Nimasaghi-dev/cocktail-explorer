@@ -1,0 +1,57 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.logo__mark {
+  width: 26px;
+  height: 34px;
+  flex-shrink: 0;
+}
+
+.logo__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.logo__name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.3rem;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, #f3dea0 0%, #c49a45 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.logo__sub {
+  margin-top: 0.3rem;
+  font-family: var(--font-display);
+  font-size: 0.55rem;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+}
+
+.logo--lg {
+  gap: 0.85rem;
+}
+
+.logo--lg .logo__mark {
+  width: 38px;
+  height: 50px;
+}
+
+.logo--lg .logo__name {
+  font-size: 2rem;
+}
+
+.logo--lg .logo__sub {
+  font-size: 0.7rem;
+  color: rgba(239, 220, 170, 0.7);
+}

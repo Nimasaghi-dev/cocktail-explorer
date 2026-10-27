@@ -5,7 +5,7 @@ const LoadingSpinner: React.FC = () => {
   return (
     <div className="loading-spinner">
       <div className="spinner"></div>
-      <p>Searching for cocktails...</p>
+      <p>Loading cocktails…</p>
     </div>
   );
 };

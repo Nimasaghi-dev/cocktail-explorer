@@ -1,51 +1,68 @@
 .search-bar {
   display: flex;
-  gap: 1rem;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 1rem;
-  background-color: var(--white);
-  border-radius: 0.5rem;
-  box-shadow: var(--shadow-sm);
+  align-items: center;
+  gap: 0.75rem;
+  width: min(100%, 380px);
+  border-bottom: 1px solid var(--brown-600);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-bar:focus-within {
+  border-color: var(--gold-deep);
+  box-shadow: inset 0 -1px 0 var(--gold-deep);
 }
 
 .search-input {
   flex: 1;
-  padding: 0.75rem 1rem;
-  border: 2px solid var(--border-color);
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  transition: border-color 0.2s;
+  min-width: 0;
+  padding: 0.55rem 0;
+  border: 0;
+  background: transparent;
+  font-size: 0.95rem;
+  color: var(--ink);
 }
 
-.search-input:focus {
+.search-input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+.search-input::placeholder {
+  color: var(--muted);
+}
+
+/* The bar's underline is the focus indicator */
+.search-input:focus-visible {
   outline: none;
-  border-color: var(--primary-color);
 }
 
 .search-button {
-  background: var(--primary-color);
-  color: var(--white);
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 0.15rem;
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brown-600);
+  transition: color 0.2s ease;
 }
 
 .search-button:hover {
-  background: var(--primary-hover);
+  color: var(--gold-deep);
 }
 
-@media (max-width: 480px) {
-  .search-bar {
-    flex-direction: column;
-    padding: 0.75rem;
-  }
+.search-button svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
 
-  .search-button {
+@media (max-width: 640px) {
+  .search-bar {
     width: 100%;
   }
-} 
+}

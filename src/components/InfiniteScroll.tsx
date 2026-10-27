@@ -60,12 +60,12 @@ const InfiniteScroll: React.FC<InfiniteScrollProps> = ({
       {isLoading && (
         <div className="loading-more">
           <div className="spinner-small"></div>
-          <p>Loading more drinks...</p>
+          <p>Loading more cocktails…</p>
         </div>
       )}
       {!hasMore && (
         <div className="no-more-content">
-          <p>No more drinks to load</p>
+          <p>No more cocktails to load</p>
         </div>
       )}
     </div>

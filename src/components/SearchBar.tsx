@@ -1,44 +1,47 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import './SearchBar.css';
 
 interface SearchBarProps {
+  value: string;
+  onChange: (value: string) => void;
   onSearch: (searchTerm: string) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+const SearchBar: React.FC<SearchBarProps> = ({ value, onChange, onSearch }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     // Focus the input field when the component mounts
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
+    inputRef.current?.focus({ preventScroll: true });
   }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (searchTerm.trim()) {
-      onSearch(searchTerm);
+    if (value.trim()) {
+      onSearch(value);
     }
   };
 
   return (
-    <form className="search-bar" onSubmit={handleSubmit}>
+    <form className="search-bar" onSubmit={handleSubmit} role="search">
       <input
         ref={inputRef}
-        type="text"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        placeholder="Search for cocktails..."
+        type="search"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder="Search cocktails by name"
         className="search-input"
-        aria-label="Search for cocktails"
+        aria-label="Search cocktails by name"
       />
       <button type="submit" className="search-button">
+        <svg viewBox="0 0 20 20" aria-hidden="true">
+          <circle cx="8.5" cy="8.5" r="6" />
+          <path d="M13 13 L18 18" />
+        </svg>
         Search
       </button>
     </form>
   );
 };
 
-export default SearchBar; 
+export default SearchBar;

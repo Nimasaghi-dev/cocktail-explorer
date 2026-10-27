@@ -1,0 +1,70 @@
+.classics {
+  padding: clamp(3rem, 8vw, 6rem) 0 clamp(2.5rem, 6vw, 4.5rem);
+  overflow: hidden;
+}
+
+.classics__label {
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  padding: 0 var(--gutter);
+}
+
+.classics__label::after {
+  content: '';
+  width: 2.5rem;
+  height: 1px;
+  background: currentColor;
+}
+
+.classics__row {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-align: left;
+}
+
+.classics__row:focus-visible {
+  outline-offset: -4px;
+}
+
+.classics__track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: classics-scroll 70s linear infinite;
+  will-change: transform;
+}
+
+.classics__row--reverse .classics__track {
+  animation-direction: reverse;
+  animation-duration: 85s;
+}
+
+.classics__row:hover .classics__track,
+.classics__row:focus-visible .classics__track {
+  animation-play-state: paused;
+}
+
+.classics__word {
+  padding-right: 0.35em;
+  font-family: var(--font-display);
+  font-weight: 100;
+  font-size: clamp(3.25rem, 10vw, 9rem);
+  line-height: 1.12;
+  color: var(--gold-pale);
+  transition: color 0.3s ease;
+}
+
+.classics__word--lead {
+  color: var(--gold-light);
+}
+
+.classics__row:hover .classics__word,
+.classics__row:focus-visible .classics__word {
+  color: var(--gold);
+}
+
+@keyframes classics-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}

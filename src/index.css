@@ -1,16 +1,33 @@
 :root {
-  --primary-color: #3b82f6;
-  --primary-hover: #2563eb;
-  --text-primary: #2c3e50;
-  --text-secondary: #64748b;
-  --background: #f8fafc;
-  --white: #ffffff;
-  --error-bg: #fee2e2;
-  --error-text: #dc2626;
-  --border-color: #e2e8f0;
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  /* Palette */
+  --gold: #e9cd87;
+  --gold-light: #efdcaa;
+  --gold-pale: #f6ecd2;
+  --gold-deep: #8a6a2e;
+  --brown-900: #2a1711;
+  --brown-700: #422110;
+  --brown-600: #4c2b20;
+  --ink: #1e1e1e;
+  --muted: #6e5d52;
+  --paper: #ffffff;
+
+  /* Type */
+  --font-display: 'Lexend Exa', Arial, Helvetica, sans-serif;
+  --font-body: 'Noto Sans', Arial, Helvetica, sans-serif;
+
+  /* Layout */
+  --max: 1280px;
+  --gutter: clamp(1rem, 4vw, 3rem);
+  --header-h: 72px;
+
+  /* Fine wavy engraving lines, like a banknote */
+  --paper-texture: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='7'%3E%3Cpath d='M0 3.5 C27 1 53 1 80 3.5 S133 6 160 3.5' fill='none' stroke='%23000' stroke-opacity='.05' stroke-width='.7'/%3E%3C/svg%3E");
+}
+
+@media (max-width: 640px) {
+  :root {
+    --header-h: 116px;
+  }
 }
 
 * {
@@ -19,17 +36,19 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background-color: var(--background);
-  color: var(--text-primary);
+  font-family: var(--font-body);
+  background-color: var(--paper);
+  background-image: var(--paper-texture);
+  color: var(--ink);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
-}
-
-button {
-  font-family: inherit;
 }
 
 img {
@@ -37,48 +56,44 @@ img {
   height: auto;
 }
 
-/* Remove default focus outline and add custom one */
-:focus {
-  outline: none;
-}
-
-:focus-visible {
-  outline: 2px solid var(--primary-color);
-  outline-offset: 2px;
-}
-
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Remove list styles */
 ul, ol {
   list-style: none;
 }
 
-/* Remove default button styles */
-button {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-}
-
-/* Remove text decoration from links */
 a {
   text-decoration: none;
   color: inherit;
 }
 
-/* Improve button accessibility */
-button:focus-visible {
-  outline: 2px solid var(--primary-color);
-  outline-offset: 2px;
+button {
+  font-family: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  cursor: pointer;
 }
 
-/* Improve form element accessibility */
-input:focus-visible {
-  outline: 2px solid var(--primary-color);
-  outline-offset: 2px;
-} 
+input {
+  font-family: inherit;
+}
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold-deep);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

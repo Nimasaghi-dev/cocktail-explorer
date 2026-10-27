@@ -36,7 +36,9 @@ const ScrollToTop: React.FC = () => {
           aria-label="Scroll to top"
           title="Scroll to top"
         >
-          ↑
+          <svg viewBox="0 0 16 9" aria-hidden="true">
+            <path d="M1 8 L8 1.5 L15 8" />
+          </svg>
         </button>
       )}
     </>

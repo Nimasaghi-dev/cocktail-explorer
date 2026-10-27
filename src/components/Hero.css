@@ -1,0 +1,159 @@
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  min-height: min(78vh, 720px);
+  overflow: hidden;
+}
+
+.hero__copy {
+  position: relative;
+  z-index: 2;
+  align-self: center;
+  padding: 4rem var(--gutter) 5.5rem;
+  padding-left: max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter)));
+}
+
+.hero__copy .eyebrow {
+  margin-bottom: 1.4rem;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.25rem, 5vw, 4.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--brown-700);
+  overflow-wrap: anywhere;
+  animation: hero-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.hero__meta {
+  margin-top: 1rem;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hero__tagline {
+  max-width: 20ch;
+  margin: 1.75rem 0 2.25rem;
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: clamp(1.25rem, 2.3vw, 1.85rem);
+  line-height: 1.25;
+  color: var(--brown-700);
+}
+
+.hero__media {
+  position: relative;
+}
+
+/* Pale gold slab behind the photo, offset along the same diagonal */
+.hero__media::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold-pale);
+  clip-path: polygon(24% 0, 100% 0, 100% 100%, 2% 100%);
+}
+
+.hero__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  clip-path: polygon(34% 0, 100% 0, 100% 100%, 12% 100%);
+  animation: hero-reveal 1.2s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.hero__rule {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.hero__rule line {
+  stroke: var(--gold);
+  stroke-width: 1.5;
+}
+
+.hero__scroll {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  bottom: 1.5rem;
+  width: 44px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(-50%);
+  animation: hero-bob 2.4s ease-in-out infinite;
+}
+
+.hero__scroll svg {
+  width: 22px;
+  height: 11px;
+  fill: none;
+  stroke: var(--gold-deep);
+  stroke-width: 1.5;
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+
+@keyframes hero-reveal {
+  from {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes hero-bob {
+  0%, 100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, 6px);
+  }
+}
+
+@media (max-width: 820px) {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .hero__media {
+    order: -1;
+    height: clamp(240px, 62vw, 460px);
+  }
+
+  .hero__media::before {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 94%);
+  }
+
+  .hero__image {
+    clip-path: polygon(0 0, 100% 0, 100% 86%, 0 100%);
+  }
+
+  .hero__rule {
+    display: none;
+  }
+
+  .hero__copy {
+    padding: 2.25rem var(--gutter) 4.5rem;
+  }
+}

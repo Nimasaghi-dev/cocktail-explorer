@@ -195,7 +195,7 @@ const App: React.FC = () => {
 
       <ClassicsMarquee onPick={handlePickClassic} />
 
-      <Footer onBackToTop={scrollToTop} />
+      <Footer />
 
       <ScrollToTop />
     </div>

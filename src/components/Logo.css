@@ -29,6 +29,11 @@
   color: transparent;
 }
 
+.logo__amp {
+  margin: 0 0.06em;
+  font-weight: 200;
+}
+
 .logo__sub {
   margin-top: 0.3rem;
   font-family: var(--font-display);

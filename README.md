@@ -1,14 +1,14 @@
-# Cocktail Explorer 🍸
+# Sip&Sin 🍸
 
 A modern React TypeScript application for exploring and discovering cocktail recipes. Built with React, TypeScript, and Vite for optimal performance and developer experience.
 
 **Live demo:** https://cocktail-explorer-nima.netlify.app
 
-![Cocktail Explorer home page with a featured random cocktail](docs/screenshot-desktop.jpg)
+![Sip&Sin home page with a featured random cocktail](docs/screenshot-desktop.jpg)
 
 <p>
   <img src="docs/screenshot-cards.jpg" alt="Random cocktails grid with recipe cards" width="68%">
-  <img src="docs/screenshot-mobile.jpg" alt="Cocktail Explorer on a phone" width="28%">
+  <img src="docs/screenshot-mobile.jpg" alt="Sip&Sin on a phone" width="28%">
 </p>
 
 ## Features

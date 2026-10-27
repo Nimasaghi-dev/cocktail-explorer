@@ -114,7 +114,7 @@ const Hero: React.FC<HeroProps> = ({ drinks, onSeeRecipe, onScrollDown }) => {
       </div>
 
       <div className="hero__copy">
-        <p className="eyebrow">{drink ? 'Tonight’s pour' : 'Cocktail Explorer'}</p>
+        <p className="eyebrow">{drink ? 'Tonight’s pour' : 'Sip&Sin'}</p>
         <div className="hero__swap" key={drink?.idDrink ?? 'intro'}>
           <h1 className="hero__title">{drink ? drink.strDrink : 'Find your next drink'}</h1>
           <p className="hero__meta">{meta}</p>

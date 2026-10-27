@@ -128,7 +128,7 @@ const App: React.FC = () => {
             type="button"
             className="logo-link"
             onClick={handleLogoClick}
-            aria-label="Cocktail Explorer, back to start"
+            aria-label="Sip&Sin, back to start"
           >
             <Logo />
           </button>

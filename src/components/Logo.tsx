@@ -24,8 +24,10 @@ const Logo: React.FC<LogoProps> = ({ size = 'md' }) => {
         <circle cx="21.5" cy="9.5" r="2.4" fill={`url(#${gradientId})`} />
       </svg>
       <span className="logo__text">
-        <span className="logo__name">Cocktail</span>
-        <span className="logo__sub">Explorer</span>
+        <span className="logo__name">
+          Sip<span className="logo__amp">&amp;</span>Sin
+        </span>
+        <span className="logo__sub">Cocktail recipes</span>
       </span>
     </span>
   );

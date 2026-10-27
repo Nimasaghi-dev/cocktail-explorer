@@ -2,6 +2,8 @@
 
 A modern React TypeScript application for exploring and discovering cocktail recipes. Built with React, TypeScript, and Vite for optimal performance and developer experience.
 
+**Live demo:** https://cocktail-explorer-nima.netlify.app
+
 ## Features
 
 - 🔍 Search for cocktails by name
@@ -11,9 +13,18 @@ A modern React TypeScript application for exploring and discovering cocktail rec
   - Preparation instructions
   - Glass type
   - Cocktail image
+- 🥃 "Try a classic" scrolling strip: click margarita, negroni or old fashioned to search
+- ♾️ Infinite scroll for more random drinks
 - 📱 Responsive design for all devices
 - ⚡ Fast and smooth user experience
-- 🎨 Modern and clean UI
+- 🎨 Gold-and-brown design inspired by classic brandy houses
+
+## Design
+
+- **Palette:** gold `#E9CD87` / `#EFDCAA`, deep brown `#2A1711`, brown text `#422110`
+- **Type:** Lexend Exa for headings, Noto Sans for body text (Google Fonts)
+- **Details:** wavy engraving-line paper texture, bold + thin "double" section titles, square outline buttons, dotted ingredient leaders on recipe cards
+- Respects `prefers-reduced-motion`
 
 ## Technologies Used
 
@@ -57,6 +68,10 @@ A modern React TypeScript application for exploring and discovering cocktail rec
    http://localhost:3000
    ```
 
+## Deployment
+
+The site is hosted on Netlify. `netlify.toml` runs `npm run build` and publishes the `dist` folder.
+
 ## Building for Production
 
 To create a production build:
@@ -74,16 +89,17 @@ The build files will be created in the `dist` directory.
 ```
 cocktail-explorer/
 ├── src/
-│   ├── components/         # React components
-│   ├── services/          # API services
-│   ├── types/            # TypeScript type definitions
+│   ├── components/       # Hero, DrinkCard, SearchBar, ClassicsMarquee, Footer, ...
+│   ├── services/         # API services (TheCocktailDB)
+│   ├── types.ts          # TypeScript type definitions
+│   ├── index.css         # Design tokens and global styles
 │   ├── App.tsx           # Main App component
 │   └── main.tsx          # Application entry point
-├── public/               # Static assets
-├── index.html           # HTML template
-├── package.json         # Project dependencies
-├── tsconfig.json        # TypeScript configuration
-└── vite.config.ts       # Vite configuration
+├── index.html            # HTML template (loads Google Fonts)
+├── netlify.toml          # Netlify build settings
+├── package.json          # Project dependencies
+├── tsconfig.json         # TypeScript configuration
+└── vite.config.ts        # Vite configuration
 ```
 
 ## Contributing

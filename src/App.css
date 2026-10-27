@@ -145,6 +145,27 @@
   font-size: 0.9rem;
 }
 
+.drinks-end {
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: 4rem 1rem 1rem;
+  text-align: center;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.drinks-end__title {
+  margin-bottom: 0.6rem;
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: clamp(1.75rem, 4vw, 2.6rem);
+  color: var(--brown-700);
+}
+
+.drinks-end .btn-outline {
+  margin-top: 1.75rem;
+}
+
 .empty-state {
   max-width: 34rem;
   margin: 0 auto;

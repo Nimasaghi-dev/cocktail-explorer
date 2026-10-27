@@ -13,6 +13,9 @@ import Footer from './components/Footer';
 import DrunkTitle from './components/DrunkTitle';
 import './App.css';
 
+// Infinite scroll stops here; a new round can be shuffled from the end of the list
+const MAX_RANDOM_DRINKS = 40;
+
 const App: React.FC = () => {
   const [searchResults, setSearchResults] = useState<Cocktail[]>([]);
   const [randomDrinks, setRandomDrinks] = useState<Cocktail[]>([]);
@@ -47,12 +50,14 @@ const App: React.FC = () => {
 
     try {
       setIsLoading(true);
-      const newDrinks = await fetchMultipleRandomDrinks(5);
+      const batch = Math.min(5, MAX_RANDOM_DRINKS - randomDrinks.length);
+      const newDrinks = await fetchMultipleRandomDrinks(batch);
       // The random endpoint can return a drink we already show
-      setRandomDrinks(prev => [
-        ...prev,
-        ...newDrinks.filter(d => !prev.some(p => p.idDrink === d.idDrink)),
-      ]);
+      const fresh = newDrinks.filter(d => !randomDrinks.some(p => p.idDrink === d.idDrink));
+      const next = [...randomDrinks, ...fresh].slice(0, MAX_RANDOM_DRINKS);
+      setRandomDrinks(next);
+      // Stop at the cap, or when a batch brings nothing (e.g. the API is down)
+      if (next.length >= MAX_RANDOM_DRINKS || fresh.length === 0) setHasMore(false);
     } catch (err) {
       setError('Failed to load more drinks. Please try again later.');
       setHasMore(false);
@@ -82,6 +87,11 @@ const App: React.FC = () => {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleNewRound = () => {
+    scrollToDrinks();
+    loadInitialRandomDrinks();
   };
 
   const handleReset = () => {
@@ -182,6 +192,18 @@ const App: React.FC = () => {
               onLoadMore={loadMoreRandomDrinks}
               hasMore={hasMore}
               isLoading={isLoading}
+              endMessage={
+                <div className="drinks-end">
+                  <p className="drinks-end__title">Last call.</p>
+                  <p>
+                    That’s {randomDrinks.length} cocktails for this round. Shuffle a new
+                    round, or search for one you know.
+                  </p>
+                  <button type="button" className="btn-outline" onClick={handleNewRound}>
+                    Shuffle a new round
+                  </button>
+                </div>
+              }
             >
               <div className="drinks-grid">
                 {randomDrinks.map(drink => (

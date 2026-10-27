@@ -6,13 +6,16 @@ interface InfiniteScrollProps {
   hasMore: boolean;
   isLoading: boolean;
   children: React.ReactNode;
+  /** Shown once there is nothing more to load */
+  endMessage?: React.ReactNode;
 }
 
 const InfiniteScroll: React.FC<InfiniteScrollProps> = ({
   onLoadMore,
   hasMore,
   isLoading,
-  children
+  children,
+  endMessage
 }) => {
   const observer = useRef<IntersectionObserver | null>(null);
   const [isIntersecting, setIsIntersecting] = useState(false);
@@ -63,10 +66,12 @@ const InfiniteScroll: React.FC<InfiniteScrollProps> = ({
           <p>Loading more cocktails…</p>
         </div>
       )}
-      {!hasMore && (
-        <div className="no-more-content">
-          <p>No more cocktails to load</p>
-        </div>
+      {!hasMore && !isLoading && (
+        endMessage ?? (
+          <div className="no-more-content">
+            <p>No more cocktails to load</p>
+          </div>
+        )
       )}
     </div>
   );

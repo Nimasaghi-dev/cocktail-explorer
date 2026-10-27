@@ -11,7 +11,7 @@
 }
 
 .drunk-title:hover {
-  --amp: 1.9;
+  --amp: 1.4;
 }
 
 /* Each word leans and sways as a whole */
@@ -22,7 +22,7 @@
 }
 
 .drunk-title.is-seen .drunk-word {
-  animation: drunk-lean 4.8s ease-in-out var(--word-delay, 0s) infinite alternate;
+  animation: drunk-lean 7s ease-in-out var(--word-delay, 0s) infinite alternate;
 }
 
 .drunk-word__main,
@@ -31,8 +31,35 @@
   perspective: 500px;
 }
 
+/* Raised metal: crisp dark edge below plus a soft warm shadow */
 .drunk-word__main {
   position: relative;
+  filter:
+    drop-shadow(0 1px 0 rgba(110, 72, 18, 0.55))
+    drop-shadow(0 8px 14px rgba(138, 106, 46, 0.28));
+}
+
+/* Polished gold, per letter: bright crown, dark horizon band, bronze base,
+   with a glint layered on top that sweeps across */
+.drunk-word__main .drunk-letter__in {
+  background-image:
+    linear-gradient(105deg, transparent 42%, rgba(255, 251, 235, 0.95) 50%, transparent 58%),
+    linear-gradient(
+      180deg,
+      #fff3c8 0%,
+      #f0d48a 18%,
+      #c9973f 42%,
+      #8f6420 50%,
+      #d9b25c 58%,
+      #f5dc93 74%,
+      #a97a2c 100%
+    );
+  background-size: 300% 100%, 100% 100%;
+  background-position: 100% 0, 0 0;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* Double vision: a blurry copy drifts apart and back together */
@@ -40,12 +67,12 @@
   position: absolute;
   inset: 0;
   opacity: 0;
-  filter: blur(0.8px);
+  filter: blur(0.6px);
   pointer-events: none;
 }
 
 .drunk-title.is-seen .drunk-word__ghost {
-  animation: drunk-double 6.5s ease-in-out calc(var(--word-delay, 0s) + 1.2s) infinite;
+  animation: drunk-double 11s ease-in-out calc(var(--word-delay, 0s) + 2s) infinite;
 }
 
 /* Letters rock on their feet, each out of step */
@@ -55,7 +82,7 @@
 }
 
 .drunk-title.is-seen .drunk-letter {
-  animation: drunk-sway var(--dur, 2.8s) ease-in-out calc(var(--i, 0) * -0.27s) infinite alternate;
+  animation: drunk-sway var(--dur, 5s) ease-in-out calc(var(--i, 0) * -0.12s) infinite alternate;
 }
 
 .drunk-letter__in {
@@ -67,7 +94,9 @@
 }
 
 .drunk-title.is-seen .drunk-word__main .drunk-letter__in {
-  animation: drunk-stumble 0.9s cubic-bezier(0.3, 1.6, 0.5, 1) calc(var(--i, 0) * 70ms) both;
+  animation:
+    drunk-stumble 1.1s cubic-bezier(0.3, 1.3, 0.5, 1) calc(var(--i, 0) * 60ms) both,
+    gold-glint 6.5s ease-in-out calc(1.6s + var(--i, 0) * 70ms) infinite;
 }
 
 .drunk-title:not(.is-onscreen) *,
@@ -95,50 +124,63 @@
 @keyframes drunk-lean {
   from {
     transform:
-      rotate(calc(-1.2deg * var(--amp)))
-      skewX(calc(3deg * var(--amp)))
-      translateX(calc(-0.015em * var(--amp)));
+      rotate(calc(-0.8deg * var(--amp)))
+      skewX(calc(1.2deg * var(--amp)))
+      translateX(calc(-0.01em * var(--amp)));
   }
   to {
     transform:
-      rotate(calc(1.2deg * var(--amp)))
-      skewX(calc(-3deg * var(--amp)))
-      translateX(calc(0.015em * var(--amp)));
+      rotate(calc(0.8deg * var(--amp)))
+      skewX(calc(-1.2deg * var(--amp)))
+      translateX(calc(0.01em * var(--amp)));
   }
 }
 
+/* Rare and faint: mostly in focus, now and then a soft double */
 @keyframes drunk-double {
   0%,
+  30%,
   100% {
     opacity: 0;
     transform: translate(0, 0);
   }
-  35% {
-    opacity: 0.45;
-    transform: translate(calc(0.06em * var(--amp)), calc(-0.015em * var(--amp)));
+  50% {
+    opacity: 0.22;
+    transform: translate(calc(0.025em * var(--amp)), calc(-0.008em * var(--amp)));
   }
-  55% {
-    opacity: 0.4;
-    transform: translate(calc(-0.045em * var(--amp)), calc(0.02em * var(--amp)));
+  65% {
+    opacity: 0.18;
+    transform: translate(calc(-0.02em * var(--amp)), calc(0.01em * var(--amp)));
   }
-  75% {
-    opacity: 0.15;
-    transform: translate(0.01em, 0);
+  80% {
+    opacity: 0;
+    transform: translate(0, 0);
   }
 }
 
 @keyframes drunk-stumble {
   0% {
     opacity: 0;
-    transform: translateY(-0.5em) rotateX(80deg) rotateZ(-12deg);
+    transform: translateY(-0.25em) rotateX(40deg) rotateZ(-4deg);
   }
   60% {
     opacity: 1;
-    transform: translateY(0.06em) rotateX(-12deg) rotateZ(5deg);
+    transform: translateY(0.02em) rotateX(-4deg) rotateZ(1.5deg);
   }
   100% {
     opacity: 1;
     transform: none;
+  }
+}
+
+/* The glint crosses in the first 30%, then the metal rests */
+@keyframes gold-glint {
+  0% {
+    background-position: 100% 0, 0 0;
+  }
+  30%,
+  100% {
+    background-position: 0% 0, 0 0;
   }
 }
 

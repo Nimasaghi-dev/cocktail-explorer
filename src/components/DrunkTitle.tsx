@@ -22,11 +22,12 @@ const DrunkWord: React.FC<DrunkWordProps> = ({ text, className, seed }) => {
       char: char === ' ' ? ' ' : char,
       style: {
         '--i': i,
-        '--tilt': `${((2 + a * 4) * (i % 2 ? 1 : -1)).toFixed(2)}deg`,
-        '--yaw': `${(8 + b * 10).toFixed(2)}deg`,
-        '--pitch': `${((c - 0.5) * 24).toFixed(2)}deg`,
-        '--bob': `${(0.03 + c * 0.06).toFixed(3)}em`,
-        '--dur': `${(2.2 + b * 1.4).toFixed(2)}s`,
+        // A gentleman's sway: letters lean the same way, small and slow
+        '--tilt': `${(0.8 + a * 0.8).toFixed(2)}deg`,
+        '--yaw': `${(3 + b * 4).toFixed(2)}deg`,
+        '--pitch': `${((c - 0.5) * 8).toFixed(2)}deg`,
+        '--bob': `${(0.01 + c * 0.02).toFixed(3)}em`,
+        '--dur': `${(4.5 + b * 2).toFixed(2)}s`,
       } as React.CSSProperties,
     };
   });

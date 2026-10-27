@@ -8,6 +8,7 @@
   width: 26px;
   height: 34px;
   flex-shrink: 0;
+  filter: drop-shadow(0 1px 0 rgba(110, 72, 18, 0.35));
 }
 
 .logo__text {
@@ -23,10 +24,58 @@
   line-height: 1;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  background: linear-gradient(180deg, #f3dea0 0%, #c49a45 100%);
+  /* Same polished gold as the section titles, with a glint layered on top */
+  background-image:
+    linear-gradient(105deg, transparent 42%, rgba(255, 251, 235, 0.95) 50%, transparent 58%),
+    linear-gradient(
+      180deg,
+      #fff3c8 0%,
+      #f0d48a 18%,
+      #c9973f 42%,
+      #8f6420 50%,
+      #d9b25c 58%,
+      #f5dc93 74%,
+      #a97a2c 100%
+    );
+  background-size: 300% 100%, 100% 100%;
+  background-position: 100% 0, 0 0;
+  background-repeat: no-repeat;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  filter: drop-shadow(0 1px 0 rgba(110, 72, 18, 0.4));
+  animation: logo-glint 8s ease-in-out 1.2s infinite;
+}
+
+/* Hovering the logo sends a quick glint across */
+.logo-link:hover .logo__name,
+.logo-link:focus-visible .logo__name {
+  animation: logo-glint-once 1.1s ease-in-out;
+}
+
+@keyframes logo-glint {
+  0% {
+    background-position: 100% 0, 0 0;
+  }
+  22%,
+  100% {
+    background-position: 0% 0, 0 0;
+  }
+}
+
+@keyframes logo-glint-once {
+  from {
+    background-position: 100% 0, 0 0;
+  }
+  to {
+    background-position: 0% 0, 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo__glint {
+    display: none;
+  }
 }
 
 .logo__amp {

@@ -1,39 +1,130 @@
 .scroll-to-top {
+  --p: 0;
   position: fixed;
   right: 1.5rem;
   bottom: 1.5rem;
   z-index: 50;
-  width: 44px;
-  height: 44px;
+  width: 58px;
+  height: 58px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
+  border-radius: 50%;
   background: var(--paper);
-  border: 1px solid var(--gold-light);
-  color: var(--gold-deep);
-  box-shadow: 0 8px 22px -10px rgba(42, 23, 17, 0.4);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  animation: scroll-top-in 0.3s ease both;
+  box-shadow: 0 10px 26px -12px rgba(42, 23, 17, 0.5);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  animation: scroll-top-in 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 .scroll-to-top:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 26px -10px rgba(42, 23, 17, 0.45);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 30px -12px rgba(42, 23, 17, 0.55);
 }
 
-.scroll-to-top svg {
-  width: 16px;
-  height: 9px;
+.scroll-to-top__icon {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Scroll progress ring */
+
+.scroll-to-top__track,
+.scroll-to-top__progress {
   fill: none;
-  stroke: currentColor;
-  stroke-width: 1.6;
+  stroke-width: 2;
+}
+
+.scroll-to-top__track {
+  stroke: var(--gold-pale);
+}
+
+.scroll-to-top__progress {
+  stroke: var(--gold-deep);
+  stroke-linecap: round;
+  stroke-dashoffset: calc(157.08 * (1 - var(--p)));
+  transform: rotate(-90deg);
+  transform-origin: 28px 28px;
+}
+
+/* Glass: liquid level follows scroll progress */
+
+.scroll-to-top__glass {
+  transform-origin: 28px 41px;
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.scroll-to-top:hover .scroll-to-top__glass,
+.scroll-to-top:focus-visible .scroll-to-top__glass {
+  transform: rotate(-14deg);
+}
+
+.scroll-to-top__liquid {
+  transform: translateY(calc((1 - var(--p)) * 13px));
+}
+
+.scroll-to-top__outline {
+  fill: none;
+  stroke: var(--brown-600);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.scroll-to-top__cherry {
+  opacity: 0;
+  transform: translateY(-6px) scale(0.4);
+  transform-origin: 32.5px 18px;
+  transition: opacity 0.2s ease, transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.scroll-to-top__cherry path {
+  fill: none;
+  stroke: var(--brown-600);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+}
+
+.scroll-to-top__cherry circle {
+  fill: #9b2335;
+}
+
+.scroll-to-top.is-full .scroll-to-top__cherry {
+  opacity: 1;
+  transform: none;
+}
+
+/* "Back to top" label slides out on hover */
+
+.scroll-to-top__label {
+  position: absolute;
+  right: calc(100% + 0.6rem);
+  top: 50%;
+  padding: 0.45rem 0.8rem;
+  white-space: nowrap;
+  font-weight: 600;
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  background: var(--brown-900);
+  border: 1px solid rgba(239, 220, 170, 0.35);
+  opacity: 0;
+  transform: translate(8px, -50%);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.scroll-to-top:hover .scroll-to-top__label,
+.scroll-to-top:focus-visible .scroll-to-top__label {
+  opacity: 1;
+  transform: translate(0, -50%);
 }
 
 @keyframes scroll-top-in {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(12px) scale(0.6);
   }
 }
 
@@ -41,5 +132,7 @@
   .scroll-to-top {
     right: 1rem;
     bottom: 1rem;
+    width: 52px;
+    height: 52px;
   }
 }
